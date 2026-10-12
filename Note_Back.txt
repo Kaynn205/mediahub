@@ -1,0 +1,31 @@
+TP1
+
+
+TP2
+1.200/200/404 oui car la ressource n'est pas trouvable
+
+2.rien car c'est un tableau vide , tableau vide car rien trouver avec le filtre
+
+3.201 created et 422,2 champs de listé dans l'erreur le msg et le titre, oui
+
+TP3 : 
+Partie 2 : 
+on y remarque la date du jour d'aujourd'hui
+
+Partie 3
+ca contient car code 204 (supprimé donc rien d'afficher)
+
+Partie 4
+le contenu est encore là car les données persiste car dans une BDD
+
+Partie 5
+non l'email devrait être unique et on doit utiliser ->unique()
+
+TP4 
+Partie 1
+Oui ca affiche bien les informations de auteur 
+Illuminate\Database\Eloquent\Relations\BelongsTo {#8215}
+cela renvoie la méthode 
+
+Partie 2
+J'ai 2 categories,une tuto et une video, toujours 2 car cela ne s'est pas refresh -> $contenu = Contenu::find(nb)

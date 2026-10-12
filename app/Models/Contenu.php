@@ -10,8 +10,8 @@ class Contenu extends Model
 
     public function auteur(){
         return $this->belongsTo(Auteur::class);
-    }
-    public function contenus(){
+    }   
+    public function categories(){
         return $this->belongsToMany(Categorie::class);
     }
 }
