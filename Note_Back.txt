@@ -1,5 +1,51 @@
 TP1
+1.
+Il s’agit de code brut, qui est très peu lisible, même pour des personnes expérimentées dans le développement web.
 
+2.
+Méthode et chemin :
+CONNECT example.com:443 HTTP/1.1
+En-têtes de la requête :
+User-Agent: curl/8.21.0
+Proxy-Connection: Keep-Alive
+Statut :
+HTTP/1.1 200 Connection established
+En-têtes de la réponse :
+HTTP/1.1 200 OK
+Date: Thu, 10 Sep 2026 10:07:35 GMT
+
+3.
+100 éléments ont été envoyés. Chaque élément contient les champs suivants : userId, id, title et body.
+
+4.
+Les codes de statut sont cohérents : le code 200 pour la première requête indique que tout s’est bien passé, tandis que le code 404 pour la deuxième signifie que la ressource demandée n’a pas été trouvée.
+
+5.
+Le code 201 est cohérent avec ce que nous avons vu en cours. L’identifiant (id) a été ajouté automatiquement, car il ne nous appartient pas de le définir : c’est au serveur de le générer et de le gérer.
+
+6.
+Nous obtenons le code 503 Service Unavailable, accompagné d’une page HTML. Ce code indique que le serveur n’est temporairement pas en mesure de traiter la requête.
+
+7.
+Statut et réponse :
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.5.11
+Cache-Control: no-cache, private
+Date: Mon, 28 Sep 2026 09:07:39 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+{"message":"pong"}
+
+8.
+Nous obtenons un code de statut 201, mais le corps de la réponse est vide. Cela correspond à une réponse indiquant qu’une ressource a été créée. Attention, le code 201 est généralement associé à une requête POST plutôt qu’à une requête GET.
+
+9.
+Les trois routes apparaissent. Elles correspondent aux méthodes GET et HEAD, sauf la route /api/contenus, qui correspond à la méthode POST.
+
+10.
+Cela rend l’action plus facile à lire et à comprendre.
 
 TP2
 1.200/200/404 oui car la ressource n'est pas trouvable
@@ -29,3 +75,17 @@ cela renvoie la méthode
 
 Partie 2
 J'ai 2 categories,une tuto et une video, toujours 2 car cela ne s'est pas refresh -> $contenu = Contenu::find(nb)
+
+Partie 3
+'Auteur' to 'App\Models\Auteur' for this Tinker session = 10
+'Categorie' to 'App\Models\Categorie' for this Tinker session = 5
+'Contenu' to 'App\Models\Contenu' for this Tinker session = 50
+
+oui c'est cohérent
+
+Partie 4 
+Sans Eager Loading   51 requêtes SQL pour 50 contenus 
+Avec Eager Loading   2 requêtes SQL pour 50 contenus 
+donc oui ca suit la théorie 
+
+chaque contenu contient un objet auteur avec les informations de l’auteur et un tableau categories regroupant les catégories associées, avec leurs identifiants, leurs noms et les informations de liaison pivot.
