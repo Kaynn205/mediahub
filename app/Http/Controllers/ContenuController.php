@@ -21,15 +21,15 @@ class ContenuController extends Controller
 
     public function show($id)
     {
-        $contenu = Contenu::find($id);
-        if (! $contenu) {
-            return response()->json(
-                ['message' => 'Contenu introuvable .'],
-                404
-            );
-        }
+        $contenu = Contenu::with([
+            'auteur',
+            'categories',
+            'commentaires',
+        ])->findOrFail($id);
 
-        return response()->json(['data' => $contenu], 200);
+        return response()->json([
+            'data' => $contenu,
+        ], 200);
     }
 
     public function store(StoreContenuRequest $request)
