@@ -89,3 +89,7 @@ Avec Eager Loading   2 requêtes SQL pour 50 contenus
 donc oui ca suit la théorie 
 
 chaque contenu contient un objet auteur avec les informations de l’auteur et un tableau categories regroupant les catégories associées, avec leurs identifiants, leurs noms et les informations de liaison pivot.
+
+Partie 5
+
+On est à 4 requêtes !
