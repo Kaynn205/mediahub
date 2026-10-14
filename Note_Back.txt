@@ -99,3 +99,12 @@ TP 5
 Partie 1 
 
 On a bien les informations, auteur id apparait toujours
+
+Partie 2
+
+Un comportement de repli car le filtre n'a pas lieu car c'est un filtre inexistant
+
+Oui les contenus sont bien différents et la meta.current_page vaut 2
+
+Partie 3
+

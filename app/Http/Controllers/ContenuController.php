@@ -9,32 +9,35 @@ use Illuminate\Http\Request;
 
 class ContenuController extends Controller
 {
-public function index(Request $request)
-{
-    $categorie = $request->query('categorie');
+    public function index(Request $request)
+    {
+        $requete = Contenu::with(['auteur', 'categories']);
+        if ($categorie = $request->query('categorie')) {
+            $requete->where('categorie', $categorie);
+        }
+        $colonnesTriables = ['titre', 'categorie', 'created_at'];
+        $tri = in_array($request->query('tri'), $colonnesTriables)
+        ? $request->query('tri')
+        : 'titre';
+        $ordre = $request->query('ordre') === 'desc' ? 'desc' : 'asc';
+        $requete->orderBy($tri, $ordre);
 
-    $requete = Contenu::with(['auteur', 'categories']);
-
-    if ($categorie) {
-        $requete->where('categorie', $categorie);
+        return ContenuResource::collection($requete->paginate(15));
     }
 
-    return ContenuResource::collection($requete->get());
-}
+    public function show($id)
+    {
+        $contenu = Contenu::with(['auteur', 'categories'])->find($id);
 
-public function show($id)
-{
-    $contenu = Contenu::with(['auteur', 'categories'])->find($id);
+        if (! $contenu) {
+            return response()->json(
+                ['message' => 'Contenu introuvable.'],
+                404
+            );
+        }
 
-    if (!$contenu) {
-        return response()->json(
-            ['message' => 'Contenu introuvable.'],
-            404
-        );
+        return new ContenuResource($contenu);
     }
-
-    return new ContenuResource($contenu);
-}
 
     public function store(StoreContenuRequest $request)
     {
