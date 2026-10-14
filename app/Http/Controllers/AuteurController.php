@@ -6,16 +6,15 @@ use App\Http\Requests\StoreAuteurRequest;
 use App\Http\Resources\AuteurResource;
 use App\Models\Auteur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AuteurController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $nom = $request->query('nom');
-
-        $auteurs = $nom
-            ? Auteur::where('nom', $nom)->get()
-            : Auteur::all();
+        $auteurs = Cache::remember('auteurs.liste',600,function(){
+            return Auteur::all();
+        });
 
         return AuteurResource::collection($auteurs);
     }
