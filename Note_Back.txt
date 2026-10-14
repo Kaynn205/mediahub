@@ -108,3 +108,5 @@ Oui les contenus sont bien différents et la meta.current_page vaut 2
 
 Partie 3
 
+Oui un petit peu, différence entre 0.40s et 0.35s
+le cache n'aurait pas aidé 

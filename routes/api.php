@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContenuController;
 use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\CategorieController;
 use Illuminate\Support\Facades\Route;
 
 Route::get( '/contenus', [ContenuController::class, 'index']) ;
@@ -21,3 +22,5 @@ Route::get(
     '/contenus/{id}/commentaires',
     [CommentaireController::class, 'index']
 );
+Route::get ( "/categories" , [ CategorieController::class , "index"]) ;
+Route::post ( "/categories" , [ CategorieController::class , "store"]) ;
