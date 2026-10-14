@@ -93,3 +93,9 @@ chaque contenu contient un objet auteur avec les informations de l’auteur et u
 Partie 5
 
 On est à 4 requêtes !
+
+TP 5 
+
+Partie 1 
+
+On a bien les informations, auteur id apparait toujours

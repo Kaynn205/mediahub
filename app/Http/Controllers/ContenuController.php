@@ -3,34 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContenuRequest;
+use App\Http\Resources\ContenuResource;
 use App\Models\Contenu;
 use Illuminate\Http\Request;
 
 class ContenuController extends Controller
 {
-    public function index(Request $request)
-    {
-        $categorie = $request->query('categorie');
-        $requete = Contenu::with(['auteur', 'categories']);
-        if ($categorie) {
-            $requete->where('categorie', $categorie);
-        }
+public function index(Request $request)
+{
+    $categorie = $request->query('categorie');
 
-        return response()->json(['data' => $requete->get()], 200);
+    $requete = Contenu::with(['auteur', 'categories']);
+
+    if ($categorie) {
+        $requete->where('categorie', $categorie);
     }
 
-    public function show($id)
-    {
-        $contenu = Contenu::with([
-            'auteur',
-            'categories',
-            'commentaires',
-        ])->findOrFail($id);
+    return ContenuResource::collection($requete->get());
+}
 
-        return response()->json([
-            'data' => $contenu,
-        ], 200);
+public function show($id)
+{
+    $contenu = Contenu::with(['auteur', 'categories'])->find($id);
+
+    if (!$contenu) {
+        return response()->json(
+            ['message' => 'Contenu introuvable.'],
+            404
+        );
     }
+
+    return new ContenuResource($contenu);
+}
 
     public function store(StoreContenuRequest $request)
     {
