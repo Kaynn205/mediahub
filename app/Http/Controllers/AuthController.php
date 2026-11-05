@@ -34,6 +34,11 @@ class AuthController extends Controller
             return response()->json(["message" => "Identifiantsinvalides"], 401);
         }
         $token = $user->createToken("api-token")->plainTextToken;
-        return response()->json(["data" => $user, "token"=> $token], 200);
+        return response()->json(["data" => $user, "token" => $token], 200);
+    }
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(["message" => "Deconnexion reussie."], 200);
     }
 }

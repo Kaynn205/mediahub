@@ -127,3 +127,16 @@ quand je met le mauvais MDP j'ai :
     "message": "Identifiantsinvalides"
 }
 erreur 401, on ne donne aucune informations au sujet de l'utilisateur, que ce soit le bon email ou pas
+
+Partie 3
+
+Erreur 401 quand je ne mets pas le token dans l'en-tête
+Code 200 quand je mets le token et j'ai les infos user
+
+Non car on delete le token avec currentAccessToken()->delete()
+donc notre token n'est plus accepté
+
+Partie 4 
+
+Erreur 401 car token pas donné 
+Le middleware auth:sanctum valide le jeton API. renvoie un code 201  avec le contenu créé.
