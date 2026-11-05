@@ -140,3 +140,10 @@ Partie 4
 
 Erreur 401 car token pas donné 
 Le middleware auth:sanctum valide le jeton API. renvoie un code 201  avec le contenu créé.
+
+Partie 5  
+
+Non, il ne fonctionne plus.
+non il ne fonctionne pas pour d'autre requetes.
+
+EVAL : bien maitriser les tokens et middleware.
