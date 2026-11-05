@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContenuController;
 use App\Http\Controllers\AuteurController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CategorieController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,6 @@ Route::get(
 );
 Route::get ( "/categories" , [ CategorieController::class , "index"]) ;
 Route::post ( "/categories" , [ CategorieController::class , "store"]) ;
+
+Route::post ( "/register" , [ AuthController::class , "register"]) ;
+Route::post ( "/login" , [ AuthController::class , "login"]) ;

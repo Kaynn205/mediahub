@@ -110,3 +110,20 @@ Partie 3
 
 Oui un petit peu, différence entre 0.40s et 0.35s
 le cache n'aurait pas aidé 
+
+TP 6
+
+Partie 2
+
+8dmaAmeqQz0GDJXsGdMGZZpI73OugL9Bu8hECWIu087b0c6b
+
+on retrouve le token avec le nb d'utilisation (ici 2) et en supplément :         
+"email_verified_at": null,
+"created_at": "2026-11-05T09:58:51.000000Z",
+"updated_at": "2026-11-05T09:58:51.000000Z"
+
+quand je met le mauvais MDP j'ai : 
+{
+    "message": "Identifiantsinvalides"
+}
+erreur 401, on ne donne aucune informations au sujet de l'utilisateur, que ce soit le bon email ou pas
