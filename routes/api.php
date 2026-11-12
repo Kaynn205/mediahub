@@ -19,7 +19,7 @@ Route::get('/auteurs', [AuteurController::class, 'index']);
 Route::get('/auteurs/{id}', [AuteurController::class, 'show']);
 Route::get('/categories', [CategorieController::class, 'index']);
 Route::get('/contenus/{id}/commentaires', [CommentaireController::class, 'index']);
-
+Route::get( '/contenus-recherche', [ContenuController::class,'rechercheVulnerable']) ;
 // --- Routes protégées (Écriture & Profil) ---
 Route::middleware('auth:sanctum')->group(function () {
     // Informations utilisateur et déconnexion

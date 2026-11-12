@@ -1,4 +1,4 @@
-TP1
+----- TP1
 1.
 Il s’agit de code brut, qui est très peu lisible, même pour des personnes expérimentées dans le développement web.
 
@@ -47,14 +47,14 @@ Les trois routes apparaissent. Elles correspondent aux méthodes GET et HEAD, sa
 10.
 Cela rend l’action plus facile à lire et à comprendre.
 
-TP2
+----- TP2
 1.200/200/404 oui car la ressource n'est pas trouvable
 
 2.rien car c'est un tableau vide , tableau vide car rien trouver avec le filtre
 
 3.201 created et 422,2 champs de listé dans l'erreur le msg et le titre, oui
 
-TP3 : 
+----- TP3 : 
 Partie 2 : 
 on y remarque la date du jour d'aujourd'hui
 
@@ -67,7 +67,7 @@ le contenu est encore là car les données persiste car dans une BDD
 Partie 5
 non l'email devrait être unique et on doit utiliser ->unique()
 
-TP4 
+----- TP4 
 Partie 1
 Oui ca affiche bien les informations de auteur 
 Illuminate\Database\Eloquent\Relations\BelongsTo {#8215}
@@ -94,7 +94,7 @@ Partie 5
 
 On est à 4 requêtes !
 
-TP 5 
+----- TP5 
 
 Partie 1 
 
@@ -111,7 +111,7 @@ Partie 3
 Oui un petit peu, différence entre 0.40s et 0.35s
 le cache n'aurait pas aidé 
 
-TP 6
+----- TP6
 
 Partie 2
 
@@ -147,3 +147,25 @@ Non, il ne fonctionne plus.
 non il ne fonctionne pas pour d'autre requetes.
 
 EVAL : bien maitriser les tokens et middleware.
+
+
+TP7 
+
+Partie 1 
+
+Cors Origin Allow origin not matching, état ok 200 mais pas de rendu
+
+Oui et oui, il vaut mieux spécifier chaque origins que de tout accepter.
+
+Partie 2 
+
+Oui, la requête réussit, à condition que le jeton Sanctum soit valide et que les données envoyées respectent les règles de validation du contrôleur.
+
+Partie 3
+
+On obtient tous les contenus 
+
+Oui le résultat à bien changé 
+le payload n'est plus interprété comme du code SQL
+mais comme une simple chaîne de caractères à rechercher dans le titre.
+la valeur de $q est transmise séparément de la requête SQL.
