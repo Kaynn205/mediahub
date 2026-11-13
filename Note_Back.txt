@@ -190,7 +190,23 @@ Oui avec user_id
 
 Partie 2
 
+2.4 : 200 OK : l'auteur modifie son propre contenu.
 
-
+2.5 : 403 Forbidden : l'utilisateur essaie de modifier le contenu d'un autre auteur. La Policy renvoie false, donc Laravel bloque l'opération.
 
 Partie 3
+
+	
+L'auteur modifie son propre contenu	
+200	
+Modification autorisée
+
+L'auteur modifie le contenu d'un autre
+403
+Accès refusé
+
+Le modérateur modifie le contenu d'un autre
+200
+Modification autorisée
+
+Partie 4

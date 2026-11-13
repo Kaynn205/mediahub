@@ -37,6 +37,9 @@ class ContenuPolicy
      */
     public function update(User $user, Contenu $contenu): bool
     {
+        if ($user->role === 'moderateur') {
+            return true;
+        }
         return $contenu->auteur && $contenu->auteur->user_id === $user->id;
     }
     public function delete(User $user, Contenu $contenu): bool

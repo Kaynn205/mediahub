@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // --- Routes publiques (Authentification) ---
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:register');
 Route::post('/login', [AuthController::class,'login'])->middleware('throttle:login');
 // --- Routes publiques (Lecture) ---
 Route::get('/contenus', [ContenuController::class, 'index']);
