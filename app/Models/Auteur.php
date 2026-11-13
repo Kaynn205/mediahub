@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Auteur extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom','email','bio'];
+    protected $fillable = ['nom', 'email', 'bio', 'user_id'];
 
-    public function contenus(){
+    public function contenus()
+    {
         return $this->hasMany(Contenu::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

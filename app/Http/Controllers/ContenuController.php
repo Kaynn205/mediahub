@@ -6,9 +6,11 @@ use App\Http\Requests\StoreContenuRequest;
 use App\Http\Resources\ContenuResource;
 use App\Models\Contenu;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ContenuController extends Controller
 {
+    use AuthorizesRequests;
     public function index(Request $request)
     {
         $requete = Contenu::with(['auteur', 'categories']);
@@ -55,6 +57,7 @@ class ContenuController extends Controller
                 404
             );
         }
+        $this -> authorize( 'update' , $contenu ) ;
         $contenu->update($request->validated());
 
         return response()->json(['data' => $contenu], 200);
@@ -69,6 +72,7 @@ class ContenuController extends Controller
                 404
             );
         }
+        $this->authorize('delete', $contenu);
         $contenu->delete();
 
         return response()->json(null, 204);
