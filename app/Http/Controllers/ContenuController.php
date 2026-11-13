@@ -57,7 +57,6 @@ class ContenuController extends Controller
                 404
             );
         }
-        // $this -> authorize( 'update' , $contenu ) ;
         $contenu->update($request->validated());
 
         return response()->json(['data' => $contenu], 200);
@@ -71,7 +70,6 @@ class ContenuController extends Controller
                 404
             );
         }
-        // $this->authorize('delete', $contenu);
         $contenu->delete();
 
         return response()->json(null, 204);
