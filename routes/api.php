@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // --- Routes publiques (Authentification) ---
 Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:register');
-Route::post('/login', [AuthController::class,'login'])->middleware('throttle:login');
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
 // --- Routes publiques (Lecture) ---
 Route::get('/contenus', [ContenuController::class, 'index']);
 Route::get('/contenus/{id}', [ContenuController::class, 'show']);
@@ -34,8 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Écriture : Contenus
     Route::post('/contenus', [ContenuController::class, 'store']);
-    Route::put('/contenus/{id}', [ContenuController::class, 'update']);
-    Route::delete('/contenus/{id}', [ContenuController::class, 'destroy']);
+    // Route::put('/contenus/{id}', [ContenuController::class, 'update']);
+    Route::put("/contenus/{contenu}", [ContenuController::class, "update"])->middleware("can:update,contenu");
+    Route::delete('/contenus/{contenu}', [ContenuController::class, 'destroy'])->middleware("can:destroy,contenu");
 
     // Écriture : Auteurs
     Route::post('/auteurs', [AuteurController::class, 'store']);

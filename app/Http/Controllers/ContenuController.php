@@ -48,31 +48,30 @@ class ContenuController extends Controller
         return response()->json(['data' => $contenu], 201);
     }
 
-    public function update(StoreContenuRequest $request, $id)
+    public function update(StoreContenuRequest $request, Contenu $contenu)
     {
-        $contenu = Contenu::find($id);
+        // $contenu = Contenu::find($id);
         if (! $contenu) {
             return response()->json(
                 ['message' => 'Contenu introuvable .'],
                 404
             );
         }
-        $this -> authorize( 'update' , $contenu ) ;
+        // $this -> authorize( 'update' , $contenu ) ;
         $contenu->update($request->validated());
 
         return response()->json(['data' => $contenu], 200);
     }
 
-    public function destroy($id)
+    public function destroy(Contenu $contenu)
     {
-        $contenu = Contenu::find($id);
         if (! $contenu) {
             return response()->json(
                 ['message' => 'Contenu introuvable .'],
                 404
             );
         }
-        $this->authorize('delete', $contenu);
+        // $this->authorize('delete', $contenu);
         $contenu->delete();
 
         return response()->json(null, 204);
