@@ -169,3 +169,15 @@ Oui le résultat à bien changé
 le payload n'est plus interprété comme du code SQL
 mais comme une simple chaîne de caractères à rechercher dans le titre.
 la valeur de $q est transmise séparément de la requête SQL.
+
+Partie 4 
+le compte créé possède bien est_verifie true alors qu'aucune vérification n'a eu lieu. La faille vient du fait que est_verifie est présent dans $fillable.
+
+Non, le nouveau compte possède est_verifie: false. Le champ est_verifie a simplement été ignoré par create() sans provoquer d'erreur, car il n'est plus présent dans $fillable.
+C'est le comportement attendu car un client ne doit pas pouvoir modifier un champ sensible comme est_verifie.
+
+Partie 5
+
+La 6ᵉ requête est bloquée par Laravel.
+Code HTTP : 429 Too Many Requests.
+Temps d'attente : il faut attendre que la fenêtre de 60s soit réinitialisée

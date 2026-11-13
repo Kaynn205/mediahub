@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // --- Routes publiques (Authentification) ---
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-
+Route::post('/login', [AuthController::class,'login'])->middleware('throttle:login');
 // --- Routes publiques (Lecture) ---
 Route::get('/contenus', [ContenuController::class, 'index']);
 Route::get('/contenus/{id}', [ContenuController::class, 'show']);
@@ -19,7 +18,7 @@ Route::get('/auteurs', [AuteurController::class, 'index']);
 Route::get('/auteurs/{id}', [AuteurController::class, 'show']);
 Route::get('/categories', [CategorieController::class, 'index']);
 Route::get('/contenus/{id}/commentaires', [CommentaireController::class, 'index']);
-Route::get( '/contenus-recherche', [ContenuController::class,'rechercheVulnerable']) ;
+Route::get('/contenus-recherche', [ContenuController::class, 'rechercheVulnerable']);
 // --- Routes protégées (Écriture & Profil) ---
 Route::middleware('auth:sanctum')->group(function () {
     // Informations utilisateur et déconnexion
@@ -31,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me/tokens', [AuthController::class, 'tokens']);
     Route::delete('/me/tokens/{id}', [AuthController::class, 'destroyToken']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
 
     // Écriture : Contenus
     Route::post('/contenus', [ContenuController::class, 'store']);
