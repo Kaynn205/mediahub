@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Jobs\EnvoyerEmailBienvenue ;
+
 
 class AuthController extends Controller
 {
@@ -21,9 +23,10 @@ class AuthController extends Controller
             "email" => $donnees["email"],
             "password" => Hash::make($donnees["password"]),
         ]);
+        EnvoyerEmailBienvenue::dispatch($user) ;
         $token = $user->createToken("api-token")->plainTextToken;
         return response()->json(["data" => $user, "token" => $token], 201);
-    }
+    }   
     public function login(Request $request)
     {
         $donnees = $request->validate([

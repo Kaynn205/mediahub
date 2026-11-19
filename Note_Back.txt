@@ -209,4 +209,19 @@ Le modérateur modifie le contenu d'un autre
 200
 Modification autorisée
 
-Partie 4
+---TP 10 
+
+Partie 1 
+
+Problème de migration : table était déjà crée, donc impossible de répondre
+
+Partie 2 
+
+Oui c'est arrivé rapidement, oui il y a une ligne, j'en déduis qu'il est déposé.
+
+Partie 3 
+
+2 requêtes -> Le problème des requêtes multiples 
+(N+1) est critique quand il se produit dans une boucle 
+ou dans le temps de réponse d’une requête HTTP : chaque requête SQL supplémentaire allonge le délai perçu par l’utilisateur
+

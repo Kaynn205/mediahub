@@ -37,7 +37,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::put('/contenus/{id}', [ContenuController::class, 'update']);
     Route::put("/contenus/{contenu}", [ContenuController::class, "update"])->middleware("can:update,contenu");
     Route::delete('/contenus/{contenu}', [ContenuController::class, 'destroy'])->middleware("can:destroy,contenu");
-
+    Route::post('/contenus/{id}/commentaires', [CommentaireController::class, 'store']);
+    Route::delete('/contenus/{contenu}/commentaires/{commentaire}', [CommentaireController::class, 'destroy'])->middleware('can:delete,commentaire');
     // Écriture : Auteurs
     Route::post('/auteurs', [AuteurController::class, 'store']);
     Route::put('/auteurs/{id}', [AuteurController::class, 'update']);
@@ -45,4 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Écriture : Catégories
     Route::post('/categories', [CategorieController::class, 'store']);
+    Route::get("/me", [AuthController::class, 'index']);
+    Route::get("/me/tokens", [AuthController::class, 'indexToken']);
+    Route::put("/me/password", [AuthController::class, 'update']);
+    Route::delete("/me/tokens/{id}", [AuthController::class, 'destroy']);
 });
