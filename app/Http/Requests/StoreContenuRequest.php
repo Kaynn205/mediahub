@@ -22,10 +22,18 @@ class StoreContenuRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'titre' => 'required|string|max:255',
             'categorie' => 'required|string',
             'description' => 'nullable|string',
         ];
+
+        if ($this->isMethod('post')) {
+            $rules['auteur_id'] = 'required|integer|exists:auteurs,id';
+        } else {
+            $rules['auteur_id'] = 'sometimes|integer|exists:auteurs,id';
+        }
+
+        return $rules;
     }
 }

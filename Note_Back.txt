@@ -225,3 +225,8 @@ Partie 3
 (N+1) est critique quand il se produit dans une boucle 
 ou dans le temps de réponse d’une requête HTTP : chaque requête SQL supplémentaire allonge le délai perçu par l’utilisateur
 
+Partie 4
+
+Oui, Oui, Oui
+
+3 tentatives pour un minimum de 5ms (de backoff)
