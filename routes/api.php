@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContenuController;
+use App\Http\Controllers\ExportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ Route::get('/auteurs/{id}', [AuteurController::class, 'show']);
 Route::get('/categories', [CategorieController::class, 'index']);
 Route::get('/contenus/{id}/commentaires', [CommentaireController::class, 'index']);
 Route::get('/contenus-recherche', [ContenuController::class, 'rechercheVulnerable']);
+Route::post('/exports/contenus', [ExportController::class, 'store']);
+Route::get('/exports/contenus', [ExportController::class, 'show']);
 // --- Routes protégées (Écriture & Profil) ---
 Route::middleware('auth:sanctum')->group(function () {
     // Informations utilisateur et déconnexion

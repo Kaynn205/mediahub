@@ -230,3 +230,13 @@ Partie 4
 Oui, Oui, Oui
 
 3 tentatives pour un minimum de 5ms (de backoff)
+
+Test (consigne 5.3) :
+1. Lancer un worker : php artisan queue:work (ou équivalent selon ta config de queue).
+2. Déclencher l’export : POST /api/exports/contenus → réponse immédiate 202 “export en cours”.
+3. Une fois le job traité, récupérer le fichier : GET /api/exports/contenus → téléchargement du CSV. 
+Tu peux l’ouvrir (tableur/éditeur) pour vérifier que titre, categorie, auteur (nom) et nombre_commentaires correspondent aux données de la base.
+Réponse à la question : si tu appelles GET /api/exports/contenus avant que le worker n’ait traité le job, 
+le fichier exports/contenus.csv n’existe pas encore, donc l’API renvoie 404 avec “export pas encore disponible”. C’est cohérent avec le cahier des charges et 
+avec le fait que l’export est asynchrone : le POST a été accepté (202) mais la ressource (le fichier CSV) n’est pas encore produite au moment du GET. (Note : si un export précédent existe déjà, 
+le GET renverra ce fichier tant qu’un nouveau job n’a pas écrasé exports/contenus.csv.)
